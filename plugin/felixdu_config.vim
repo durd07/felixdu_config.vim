@@ -136,7 +136,7 @@ if PlugLoaded("vim-gutentags")
 	   silent! call mkdir(s:vim_tags, 'p')
 	endif
 	"let $GTAGSLABEL = 'native-pygments'
-	let $GTAGSCONF = '/home/felixdu/.gtags.conf'
+	"let $GTAGSCONF = '/home/felixdu/.gtags.conf'
 	let g:gutentags_define_advanced_commands = 1
 	let g:gutentags_trace = 0
 endif
