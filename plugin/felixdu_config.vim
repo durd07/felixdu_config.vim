@@ -17,7 +17,7 @@ let g:mapleader=" "
 if has("nvim")
 	set cmdheight=0
 else
-	set wildoptions=pum
+	"set wildoptions=pum
 	set fillchars=vert:│
 endif
 
@@ -141,6 +141,13 @@ if PlugLoaded("quickr-cscope.vim")
     let g:quickr_preview_exit_on_enter = 1
     let g:quickr_preview_line_hl = "Search"
     let g:quickr_cscope_db_file = "GTAGS"
+endif
+
+"""
+""" Plug 'preservim/tagbar'
+"""
+if PlugLoaded("tagbar")
+	nmap tb :TagbarToggle<CR>
 endif
 
 """
