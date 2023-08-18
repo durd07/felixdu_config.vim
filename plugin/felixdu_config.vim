@@ -443,3 +443,6 @@ endif
 let g:oscyank_term = 'default'
 
 let g:coc_global_extensions = ['coc-json', 'coc-git', 'coc-explorer', 'coc-clangd', 'coc-pyright']
+
+" disable line number for Terminal
+autocmd TermOpen * setlocal nonumber norelativenumber
