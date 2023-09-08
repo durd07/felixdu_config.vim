@@ -442,7 +442,7 @@ endif
 " https://github.com/ojroques/vim-oscyank#the-plugin-does-not-work-with-tmux
 let g:oscyank_term = 'default'
 
-let g:coc_global_extensions = ['coc-json', 'coc-git', 'coc-explorer', 'coc-clangd', 'coc-pyright']
+let g:coc_global_extensions = ['coc-json', 'coc-git', 'coc-explorer', 'coc-clangd', 'coc-pyright', 'coc-go']
 
 " disable line number for Terminal
 autocmd TermOpen * setlocal nonumber norelativenumber
