@@ -135,12 +135,12 @@ endif
 
 if PlugLoaded("quickr-cscope.vim")
     let g:quickr_cscope_use_qf_g = 1
-    let g:quickr_cscope_autoload_db = 1
+    let g:quickr_cscope_autoload_db = 0
     let g:quickr_cscope_program = "gtags-cscope"
     let g:quickr_preview_on_cursor = 1
     let g:quickr_preview_exit_on_enter = 1
     let g:quickr_preview_line_hl = "Search"
-    let g:quickr_cscope_db_file = "GTAGS"
+    "let g:quickr_cscope_db_file = "GTAGS"
 endif
 
 """
