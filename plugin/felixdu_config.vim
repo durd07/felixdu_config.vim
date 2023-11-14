@@ -447,9 +447,9 @@ let g:coc_global_extensions = ['coc-json', 'coc-git', 'coc-explorer', 'coc-clang
 " disable line number for Terminal
 if has("nvim")
 	autocmd TermOpen * setlocal nonumber norelativenumber
+	" Enable indent-black-line
+	autocmd VimEnter * IBLEnable
 else
 	autocmd TerminalOpen * setlocal nonumber norelativenumber
 endif
 
-" Enable indent-black-line
-autocmd VimEnter * IBLEnable
