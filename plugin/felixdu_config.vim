@@ -369,11 +369,11 @@ map <F5> :call Run()<CR>
 func! Run()
     exec "w"
     if &filetype == 'c'
-        exec "AsyncRun gcc % -o %< -std=c11 && ./%<"
+        exec "AsyncRun gcc -g % -o %< -std=c11 && ./%<"
     elseif &filetype == 'python'
 	exec "AsyncRun -raw=1 python3 %"
     elseif &filetype == 'cpp'
-        exec "AsyncRun g++ % -o %< -std=c++20 && ./%<"
+        exec "AsyncRun g++ -g % -o %< -std=c++20 && ./%<"
     elseif &filetype == 'go'
         exec "AsyncRun -raw=1 go run %"
     elseif &filetype == 'java'
@@ -394,13 +394,13 @@ function! RunBlock()
     if !empty(ft) && ft !~ '^\d*$'
         if ft == 'c'
             call writefile(content, '/tmp/vim-cb'.'.c')
-            exec "AsyncRun -raw gcc /tmp/vim-cb.c -o /tmp/vim-cb.bin && /tmp/vim-cb.bin"
+            exec "AsyncRun -raw gcc -g /tmp/vim-cb.c -o /tmp/vim-cb.bin && /tmp/vim-cb.bin"
         elseif ft == 'python'
             call writefile(content, '/tmp/vim-cb'.'.py')
             exec "AsyncRun -mode=term -pos=bottom -raw python3 /tmp/vim-cb.py"
         elseif ft == 'c++'
             call writefile(content, '/tmp/vim-cb'.'.cpp')
-            exec "AsyncRun -raw g++ /tmp/vim-cb.cpp -o /tmp/vim-cb.bin && /tmp/vim-cb.bin"
+            exec "AsyncRun -raw g++ -g /tmp/vim-cb.cpp -o /tmp/vim-cb.bin && /tmp/vim-cb.bin"
         elseif ft == 'go'
             call writefile(content, '/tmp/vim-cb'.'.go')
             exec "AsyncRun -raw go run /tmp/vim-cb.go"
