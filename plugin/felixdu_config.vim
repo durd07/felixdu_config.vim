@@ -8,10 +8,6 @@ set t_Co=256
 set t_ut=
 set encoding=utf-8
 
-""" fold """
-set foldmethod=syntax
-set foldlevel=99
-
 let g:mapleader=" "
 
 if has("nvim")
