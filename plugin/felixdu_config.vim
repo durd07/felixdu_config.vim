@@ -60,8 +60,11 @@ endif
 """ Plug 'junegunn/fzf.vim'
 """
 if PlugLoaded("fzf.vim")
-	nmap <F9> :FZF <CR>
-	nmap <F8> :Rg <c-r>=expand("<cword>")<cr><CR>
+	"nmap <F9> :FZF <CR>
+	"nmap <F8> :Rg <c-r>=expand("<cword>")<cr><CR>
+	nmap <F9> :Telescope find_files<CR>
+	nmap <F8> :Telescope grep_string<CR>
+	nmap <F7> :Telescope live_grep<CR>
 	let g:fzf_layout = { 'down': '~60%' }
 endif
 
@@ -441,11 +444,11 @@ let g:oscyank_term = 'default'
 "let g:coc_global_extensions = ['coc-json', 'coc-git', 'coc-explorer', 'coc-clangd', 'coc-pyright', 'coc-go']
 
 " disable line number for Terminal
-if has("nvim")
-	autocmd TermOpen * setlocal nonumber norelativenumber
-	" Enable indent-black-line
-	autocmd VimEnter * IBLEnable
-else
-	autocmd TerminalOpen * setlocal nonumber norelativenumber
-endif
+"if has("nvim")
+"	autocmd TermOpen * setlocal nonumber norelativenumber
+"	" Enable indent-black-line
+"	"autocmd VimEnter * IBLEnable
+"else
+"	autocmd TerminalOpen * setlocal nonumber norelativenumber
+"endif
 
