@@ -1,9 +1,9 @@
 " """""""""""""""""""""""""""""" common configuration """"""""""""""""""""""""""""""""""""""""""""""
 set mouse=a
 set cursorline
+highlight Cursorline term=bold cterm=bold
 set cc=101
 set number
-highlight Cursorline term=bold cterm=bold
 set t_Co=256
 set t_ut=
 set encoding=utf-8
@@ -18,9 +18,7 @@ else
 endif
 
 if has("cscope")
-
     """"""""""""" Standard cscope/vim boilerplate
-
     " use both cscope and ctag for 'ctrl-]', ':ta', and 'vim -t'
     set cscopetag
 
@@ -40,37 +38,28 @@ function! PlugLoaded(name)
         \ stridx(&runtimepath, trim(g:plugs[a:name].dir, "/")) >= 0)
 endfunction
 
-"""
-""" Plug 'durd07/vim-monokai'
-"""
 if PlugLoaded("vim-monokai")
 	colorscheme monokai
 	let g:monokai_term_italic=1
 	let g:monokai_gui_italic=1
 endif
 
-"""
-""" Plug 'bronson/vim-trailing-whitespace'
-"""
 if PlugLoaded("vim-trailing-whitespace")
 	map <leader><space> :FixWhitespace<cr>
 endif
 
-"""
-""" Plug 'junegunn/fzf.vim'
-"""
 if PlugLoaded("fzf.vim")
-	"nmap <F9> :FZF <CR>
-	"nmap <F8> :Rg <c-r>=expand("<cword>")<cr><CR>
-	nmap <F9> :Telescope find_files<CR>
-	nmap <F8> :Telescope grep_string<CR>
-	nmap <F7> :Telescope live_grep<CR>
+	nmap <F9> :FZF <CR>
+	nmap <F8> :Rg <c-r>=expand("<cword>")<cr><CR>
 	let g:fzf_layout = { 'down': '~60%' }
 endif
 
-"""
-""" Plug 'vim-airline/vim-airline'
-"""
+if PlugLoaded("telescope.nvim")
+	nmap <F9> :Telescope find_files<CR>
+	nmap <F8> :Telescope grep_string<CR>
+	nmap <F7> :Telescope live_grep<CR>
+endif
+
 if PlugLoaded("vim-airline")
 	map <F10> :AirlineToggle <CR>
 	let g:airline_extensions = ['branch', 'tabline']
@@ -106,7 +95,6 @@ if PlugLoaded("vim-airline")
 	autocmd User CocGitStatusChange call s:update_git_status()
 endif
 
-""" Plug 'ludovicchabant/vim-gutentags'
 if PlugLoaded("vim-gutentags")
 	let g:gutentags_add_default_project_roots = 0
 	let g:gutentags_project_root = ['.project']
@@ -142,16 +130,10 @@ if PlugLoaded("quickr-cscope.vim")
     "let g:quickr_cscope_db_file = "GTAGS"
 endif
 
-"""
-""" Plug 'preservim/tagbar'
-"""
 if PlugLoaded("tagbar")
 	nmap tb :TagbarToggle<CR>
 endif
 
-"""
-""" Plug 'neoclide/coc.nvim', {'branch': 'release'}
-"""
 if PlugLoaded("coc.nvim")
 	" May need for Vim (not Neovim) since coc.nvim calculates byte offset by count
 	" utf-8 byte sequence
@@ -336,7 +318,6 @@ if PlugLoaded("coc.nvim")
 endif
 
 """""""""""""""""""""""""""""""""""" other useful scripts """"""""""""""""""""""""""""""""""""""""""
-
 """ use <leader><num> to jump to buffer
 function! BufPos_Initialize()
     exe "map <leader>0 :buffer 0<CR>"
@@ -360,7 +341,8 @@ function! s:ZoomToggle() abort
     endif
 endfunction
 command! ZoomToggle call s:ZoomToggle()
-nnoremap <silent> <Leader>t :ZoomToggle<CR>
+nnoremap <silent> <Leader>z :ZoomToggle<CR>
+nnoremap <silent> <Leader>t :ToggleTerm<CR>
 
 """ RUN
 let g:asyncrun_open=10
@@ -444,11 +426,8 @@ let g:oscyank_term = 'default'
 "let g:coc_global_extensions = ['coc-json', 'coc-git', 'coc-explorer', 'coc-clangd', 'coc-pyright', 'coc-go']
 
 " disable line number for Terminal
-"if has("nvim")
-"	autocmd TermOpen * setlocal nonumber norelativenumber
-"	" Enable indent-black-line
-"	"autocmd VimEnter * IBLEnable
-"else
-"	autocmd TerminalOpen * setlocal nonumber norelativenumber
-"endif
-
+if has("nvim")
+	autocmd TermOpen * setlocal nonumber norelativenumber
+else
+	autocmd TerminalOpen * setlocal nonumber norelativenumber
+endif
