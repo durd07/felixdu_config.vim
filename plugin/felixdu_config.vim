@@ -7,6 +7,7 @@ set number
 set t_Co=256
 set t_ut=
 set encoding=utf-8
+set termguicolors
 
 let g:mapleader=" "
 
