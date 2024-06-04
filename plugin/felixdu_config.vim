@@ -134,6 +134,13 @@ if PlugLoaded("tagbar")
 	nmap tb :TagbarToggle<CR>
 endif
 
+if PlugLoaded("vim-oscyank")
+	autocmd TextYankPost * if v:event.operator is 'y' && v:event.regname is '' | execute 'OSCYankRegister "' | endif
+
+	" https://github.com/ojroques/vim-oscyank#the-plugin-does-not-work-with-tmux
+	let g:oscyank_term = 'default'
+endif
+
 if PlugLoaded("coc.nvim")
 	" May need for Vim (not Neovim) since coc.nvim calculates byte offset by count
 	" utf-8 byte sequence
@@ -412,16 +419,11 @@ autocmd FileType html setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
 "autocmd FileType markdown setlocal tabstop=8 softtabstop=8 shiftwidth=8 expandtab
 "autocmd BufRead,BufNewFile /home/felixdu/src/service-mesh/envoy/* setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
 
-" OSCYank
-autocmd TextYankPost * if v:event.operator is 'y' && v:event.regname is '' | execute 'OSCYankRegister "' | endif
-
+" Jump to last opened line when start vim
 if has("autocmd")
   au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
     \| exe "normal! g'\"" | endif
 endif
-
-" https://github.com/ojroques/vim-oscyank#the-plugin-does-not-work-with-tmux
-let g:oscyank_term = 'default'
 
 "let g:coc_global_extensions = ['coc-json', 'coc-git', 'coc-explorer', 'coc-clangd', 'coc-pyright', 'coc-go']
 
