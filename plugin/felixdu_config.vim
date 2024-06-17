@@ -62,7 +62,6 @@ if PlugLoaded("telescope.nvim")
 endif
 
 if PlugLoaded("vim-airline")
-	map <F10> :AirlineToggle <CR>
 	let g:airline_extensions = ['branch', 'tabline']
 	let g:airline#extensions#tabline#enabled=1
 	let g:airline#extensions#tabline#buffer_nr_show=1
