@@ -56,9 +56,9 @@ if PlugLoaded("fzf.vim")
 endif
 
 if PlugLoaded("telescope.nvim")
-	nmap <F9> :Telescope find_files<CR>
-	nmap <F8> :Telescope grep_string<CR>
-	nmap <F7> :Telescope live_grep<CR>
+	nnoremap <F9> :lua require('telescope.builtin').find_files()<CR>
+	nnoremap <F8> :lua require('telescope.builtin').grep_string({ word_match = '-w' })<CR>
+	nnoremap <F7> :lua require('telescope.builtin').live_grep()<CR>
 endif
 
 if PlugLoaded("vim-airline")
