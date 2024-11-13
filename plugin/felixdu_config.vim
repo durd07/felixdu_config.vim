@@ -12,7 +12,7 @@ set termguicolors
 let g:mapleader=" "
 
 if has("nvim")
-	set cmdheight=0
+	set cmdheight=1
 else
 	"set wildoptions=pum
 	set fillchars=vert:│
@@ -39,12 +39,6 @@ function! PlugLoaded(name)
         \ stridx(&runtimepath, trim(g:plugs[a:name].dir, "/")) >= 0)
 endfunction
 
-if PlugLoaded("vim-monokai")
-	colorscheme monokai
-	let g:monokai_term_italic=1
-	let g:monokai_gui_italic=1
-endif
-
 if PlugLoaded("vim-trailing-whitespace")
 	map <leader><space> :FixWhitespace<cr>
 endif
@@ -53,12 +47,6 @@ if PlugLoaded("fzf.vim")
 	nmap <F9> :FZF <CR>
 	nmap <F8> :Rg <c-r>=expand("<cword>")<cr><CR>
 	let g:fzf_layout = { 'down': '~60%' }
-endif
-
-if PlugLoaded("telescope.nvim")
-	nnoremap <F9> :lua require('telescope.builtin').find_files()<CR>
-	nnoremap <F8> :lua require('telescope.builtin').grep_string({ word_match = '-w' })<CR>
-	nnoremap <F7> :lua require('telescope.builtin').live_grep()<CR>
 endif
 
 if PlugLoaded("vim-airline")
@@ -118,27 +106,6 @@ if PlugLoaded("vim-gutentags")
 	"let $GTAGSCONF = '/home/felixdu/.gtags.conf'
 	let g:gutentags_define_advanced_commands = 1
 	let g:gutentags_trace = 0
-endif
-
-if PlugLoaded("quickr-cscope.vim")
-    let g:quickr_cscope_use_qf_g = 1
-    let g:quickr_cscope_autoload_db = 0
-    let g:quickr_cscope_program = "gtags-cscope"
-    let g:quickr_preview_on_cursor = 1
-    let g:quickr_preview_exit_on_enter = 1
-    let g:quickr_preview_line_hl = "Search"
-    "let g:quickr_cscope_db_file = "GTAGS"
-endif
-
-if PlugLoaded("tagbar")
-	nmap tb :TagbarToggle<CR>
-endif
-
-if PlugLoaded("vim-oscyank")
-	autocmd TextYankPost * if v:event.operator is 'y' && v:event.regname is '' | execute 'OSCYankRegister "' | endif
-
-	" https://github.com/ojroques/vim-oscyank#the-plugin-does-not-work-with-tmux
-	let g:oscyank_term = 'default'
 endif
 
 if PlugLoaded("coc.nvim")
